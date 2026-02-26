@@ -86,6 +86,14 @@ public class DashboardPage extends BasePage{
         wait.until(ExpectedConditions.urlContains("pim/viewPersonalDetails"));
     }
 
+    public void clickMenuAdmin() throws Exception{
+        WebElement adminTab  = wait.until(ExpectedConditions.elementToBeClickable(ADMIN_TAB));
+        highlight(adminTab);
+        adminTab.click();
+        unHighlight(adminTab);
+        wait.until(ExpectedConditions.urlContains("admin/viewSystemUsers"));
+    }
+
     public void selectUserRole(String role) throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(ADMIN_TAB)).click();
         wait.until(ExpectedConditions.elementToBeClickable(USER_ROLE)).click();
