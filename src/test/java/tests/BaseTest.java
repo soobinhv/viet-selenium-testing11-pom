@@ -28,7 +28,11 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
+        options.addArguments("--no-sandbox", "--disable-gpu");
 
+        if ("true".equals(System.getenv("CI"))) {
+            options.addArguments("--headless=new");
+        }
 //        initialize ChromeDriver with options
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
