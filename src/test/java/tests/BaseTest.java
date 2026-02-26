@@ -1,6 +1,8 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import listener.ExtentTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +15,8 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-@Listeners(ExtentTestListener.class)
+@Epic("Auth")
+@Feature("Login")
 public class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait wait;

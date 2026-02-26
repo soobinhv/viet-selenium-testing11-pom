@@ -27,23 +27,28 @@ public class LoginPage extends BasePage {
     public void enterUsername(String username) throws InterruptedException {
 //        find element username input
         WebElement usernameInput = driver.findElement(USERNAME_INPUT);
+        highlight(usernameInput);
 //        clear username input
         usernameInput.clear();
 //        fill username input
         usernameInput.sendKeys(username);
 //        add wait if need
         Thread.sleep(2000);
+        unHighlight(usernameInput);
     }
 
     public void enterPassword(String password) throws InterruptedException {
         WebElement passwordInput = driver.findElement(PASSWORD_INPUT);
+        highlight(passwordInput);
         passwordInput.clear();
         passwordInput.sendKeys(password);
         Thread.sleep(2000);
+        unHighlight(passwordInput);
     }
 
     public void clickLoginBtn(){
         WebElement loginBtn = driver.findElement(LOGIN_BTN);
+        highlight(loginBtn);
         loginBtn.click();
     }
 

@@ -13,6 +13,8 @@ public class DashboardPage extends BasePage{
     private static final By ADMIN_ROLE = By.xpath("//div[@role='listbox']//*[text()='Admin']");
     private static final By ESS_ROLE = By.xpath("//div[@role='listbox']//*[text()='ESS']");
     private static final By ADMIN_TAB = By.xpath("//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name' and text()='Admin']");
+    private static final By FOOTER = By.xpath("//div[@class='oxd-layout-footer']");
+    private static final By MYINFO_TAB = By.xpath("//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name' and text()='My Info']");
     private static By sideMenuByText(String text){
         return By.xpath("//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name' and text() ='"+text+"']");
     }
@@ -55,6 +57,33 @@ public class DashboardPage extends BasePage{
             }
         }
         return true;
+    }
+
+    public void scrollToBottom(){
+        js.executeScript("window.scrollTo(0,  document.body.scrollHeight);");
+    }
+
+    public void scrollToTop(){
+        js.executeScript("window.scrollTo(0, 0 );");
+    }
+
+    public void scrollToElement(WebElement element){
+        js.executeScript("arguments[0].scrollIntoView({behaviour: 'smooth', block: 'end'});", element);
+        js.executeScript("arguments[0].style.border='2px solid red';", element);
+        js.executeScript("arguments[0].style.backgroundColor='yellow';", element);
+    }
+
+    public void scrollToFooterAndHighlight(){
+        WebElement footer = driver.findElement(FOOTER);
+        scrollToElement(footer);
+    }
+
+    public void clickMenuMyInfo(){
+        WebElement myInfoTab = wait.until(ExpectedConditions.elementToBeClickable(MYINFO_TAB));
+        highlight(myInfoTab);
+        myInfoTab.click();
+        unHighlight(myInfoTab);
+        wait.until(ExpectedConditions.urlContains("pim/viewPersonalDetails"));
     }
 
     public void selectUserRole(String role) throws InterruptedException {

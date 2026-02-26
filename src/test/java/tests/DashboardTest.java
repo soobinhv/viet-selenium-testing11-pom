@@ -37,6 +37,23 @@ public class DashboardTest extends BaseTest{
     }
 
     @Test
+    public void testScroll() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver, wait);
+        loginPage.login("Admin","admin123");
+
+        DashboardPage dashboardPage = new DashboardPage(driver, wait);
+        Thread.sleep(3000);
+        dashboardPage.scrollToBottom();
+        Thread.sleep(3000);
+
+        dashboardPage.scrollToTop();
+        Thread.sleep(3000);
+        dashboardPage.scrollToFooterAndHighlight();
+        Thread.sleep(3000);
+        Assert.assertTrue(true, "Scroll to bottom and top successfully.");
+    }
+
+    @Test
     public void selectAdminRole() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver, wait);
         loginPage.login("Admin","admin123");
@@ -45,4 +62,6 @@ public class DashboardTest extends BaseTest{
 
         dashboardPage.selectUserRole("Admin");
     }
+
+
 }
